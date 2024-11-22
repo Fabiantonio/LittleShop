@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'LittleShop.urls'
@@ -125,8 +126,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Directorio donde Django almacenará los archivos estáticos para producción
+
+# Esto le dice a Whitenoise dónde encontrar los archivos estáticos en producción
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Usar Whitenoise para manejar archivos estáticos optimizados (como gzip, etc.)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
